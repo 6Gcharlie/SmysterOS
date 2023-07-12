@@ -13,3 +13,4 @@ from .scripts import Gui
 
 # - Game loops
 from .loops import test_environment
+from .loops import world
