@@ -3,14 +3,14 @@ main.py is the executable for the game, run this to play the game!
 """
 # - Module imports for the game
 import pygame
-from assets import Window, test_environment
+from assets import Window, test_environment, world
 
 # - Initialise modules
 pygame.font.init()
 pygame.display.init()
 
 # - Renderer and flags to boost speed with each
-RENDER = "SDL 2"
+RENDER = "OpenGL"
 SDL_FLAGS = 512
 OPENGL_FLAGS = 1073741824 | 1
 
@@ -25,7 +25,7 @@ window_attributes = {
     "flags": OPENGL_FLAGS if RENDER == "OpenGL" else SDL_FLAGS,
     "clock": pygame.time.Clock(),
     "vsync": False,
-    "loop": "window test",
+    "loop": "world",
     "tick": "NA",
     "path": "assets/original/",
     "fps": 60
@@ -39,6 +39,8 @@ game.set_game_surface("Window test")
 if __name__ == "__main__":
     while game.running:
         match game.loop:
+            case "world":
+                world(game)
             case "window test":
                 test_environment(game)
             case "restart":
